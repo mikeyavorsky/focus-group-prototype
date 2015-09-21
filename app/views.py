@@ -114,10 +114,12 @@ def admin():
     return render_template('admin.html',
                            title='Admin')
 
-@app.route('/results')
-def results():
+@app.route('/results/<post_id>')
+def results(post_id):
     return render_template('results.html',
-                           title='Results')
+                           post=post,
+                           answers=answers,
+                           title=post['title']+' Results')
 
 @app.route('/new-post')
 def new_post():
