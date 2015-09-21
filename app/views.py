@@ -20,76 +20,90 @@ def index():
                   'type': 'string',
                   'body': 'What do you love most about Portland?'
                 }
+            ],
+            'comments': [
+                {
+                  'id': '1',
+                  'timestamp': '2012-12-31 15:54:42.915204',
+                  'author': 'Roger',
+                  'body': 'I didn't really like Portland.'
+                },
+                {
+                  'id': '2',
+                  'timestamp': '2012-12-30 15:54:42.915204',
+                  'author': 'Christine',
+                  'body': 'The food!'
+                }
             ]
         },
         {
             'id': '2',
             'timestamp': '2012-12-30 15:54:42.915204',
             'author': 'Susan',
-            'body': 'The Avengers movie was so cool!',
+            'body': 'I loved the Avengers movie!!',
             'questions': [
                 {
                   'type': 'integer',
-                  'body': 'how much do you love Portland (1-5)?'
+                  'body': 'How much did you love the Avengers movie? (1-5)'
                 },
                 {
                   'type': 'string',
-                  'body': 'What do you love most about Portland?'
+                  'body': 'What was your favorite part?'
                 }
-            ] 
-        }
-    ]
-    comments = [
-        {
-            'id': '1',
-            'post_id': '2',
-            'timestamp': '2012-12-31 15:54:42.915204',
-            'author': 'Roger',
-            'body': 'I didn't really like the Avengers movie, nor seeing it in Portland.'
+            ],
+            'comments': [
+                {
+                  'id': '1',
+                  'timestamp': '2012-12-31 15:54:42.915204',
+                  'author': 'Phyllis',
+                  'body': 'I didn't really like the Avengers movie.'
+                },
+                {
+                  'id': '2',
+                  'timestamp': '2012-12-30 15:54:42.915204',
+                  'author': 'Velociraptor',
+                  'body': 'The enemies looked like dinosaurs.'
+                }
+            ]
         },
-        {
-            'id': '2',
-            'post_id': '1',
-            'timestamp': '2012-12-30 15:54:42.915204',
-            'author': 'Christine',
-            'body': 'I loved the food in Portland! Shwarma! Just like the Avengers'
-        }
     ]
     return render_template('index.html',
                            title='Home',
-                           posts=posts
-                           comments=comments)
+                           posts=posts)
 
 @app.route('/post/')
 @app.route('/post/<id>')
 def post():
-    post = [
-        {
+    post = {
             'id': '2',
             'timestamp': '2012-12-30 15:54:42.915204',
             'author': 'Susan',
-            'body': 'The Avengers movie was so cool!',
+            'body': 'I loved the Avengers movie!!',
             'questions': [
                 {
                   'type': 'integer',
-                  'body': 'how much do you love Portland (1-5)?'
+                  'body': 'How much did you love the Avengers movie? (1-5)'
                 },
                 {
                   'type': 'string',
-                  'body': 'What do you love most about Portland?'
+                  'body': 'What was your favorite part?'
+                }
+            ],
+            'comments': [
+                {
+                  'id': '1',
+                  'timestamp': '2012-12-31 15:54:42.915204',
+                  'author': 'Phyllis',
+                  'body': 'I didn't really like the Avengers movie.'
+                },
+                {
+                  'id': '2',
+                  'timestamp': '2012-12-30 15:54:42.915204',
+                  'author': 'Velociraptor',
+                  'body': 'The enemies looked like dinosaurs.'
                 }
             ]
-        }
-    ]
-    comments = [
-        {
-            'id': '1',
-            'post_id': '2',
-            'author': 'Roger',
-            'body': 'I didn't really like the Avengers movie, nor seeing it in Portland.'
-        }
-    ]
+    }
     return render_template('post.html',
                            title=post['title'],
-                           post=post,
-                           comments=comments)
+                           post=post)
