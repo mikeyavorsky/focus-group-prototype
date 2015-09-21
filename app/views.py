@@ -107,3 +107,19 @@ def post():
     return render_template('post.html',
                            title=post['title'],
                            post=post)
+
+
+@app.route('/admin')
+def admin():
+    return render_template('admin.html',
+                           title='Admin')
+
+@app.route('/results')
+def results():
+    return render_template('results.html',
+                           title='Results')
+
+@app.route('/new-post')
+def new_post():
+    return render_template('new-post.html',
+                           title='New Post')
