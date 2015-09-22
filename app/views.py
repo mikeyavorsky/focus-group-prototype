@@ -74,41 +74,15 @@ def index():
 
 @app.route('/post/')
 @app.route('/post/<id>')
-def post():
-    post = {
-            'id': '2',
-            'timestamp': '2012-12-30 15:54:42.915204',
-            'author': 'Susan',
-            'body': 'I loved the Avengers movie!!',
-            'questions': [
-                {
-                  'type': 'integer',
-                  'body': 'How much did you love the Avengers movie? (1-5)'
-                },
-                {
-                  'type': 'string',
-                  'body': 'What was your favorite part?'
-                }
-            ],
-            'comments': [
-                {
-                  'id': '1',
-                  'timestamp': '2012-12-31 15:54:42.915204',
-                  'author': 'Phyllis',
-                  'body': 'I didn\'t really like the Avengers movie.'
-                },
-                {
-                  'id': '2',
-                  'timestamp': '2012-12-30 15:54:42.915204',
-                  'author': 'Velociraptor',
-                  'body': 'The enemies looked like dinosaurs.'
-                }
-            ]
-    }
-    post = Post.query.order_by(Post.timestamp.desc()).first()
+def post(id=0):
+    if id == 0:
+        post = Post.query.order_by(Post.timestamp.desc())
+    else:
+        post = Post.query.filter_by(id=id)
+    #post = Post.query.order_by(Post.timestamp.desc()).first()
     return render_template('post.html',
-                           title=post.title,
-                           post=post)
+                           title=post[0].title,
+                           post=post[0])
 
 
 @app.route('/admin')
