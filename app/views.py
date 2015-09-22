@@ -59,6 +59,7 @@ def results(post_id=0):
                            answers=relevant_answers,
                            title=post[0].title+' Results')
 
+@app.route('/new-post/', methods=['GET','POST'])
 @app.route('/new-post', methods=['GET','POST'])
 def new_post():
     form = PostForm()
