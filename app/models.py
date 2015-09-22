@@ -4,6 +4,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     timestamp = db.Column(db.DateTime)
     author = db.Column(db.String(64))
+    title = db.Column(db.String(140))
     body = db.Column(db.String(140))
     questions = db.relationship('Question', backref='post', lazy='dynamic')
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
