@@ -6,79 +6,18 @@ from .models import Post, Comment, Question, Answer, Response
 @app.route('/')
 @app.route('/index')
 def index():
-    posts = [
-        {
-            'id': '1',
-            'timestamp': '2012-12-31 15:54:42.915204',
-            'author': 'John',
-            'body': 'Beautiful day in Portland!',
-            'questions': [
-                {
-                  'type': 'integer',
-                  'body': 'how much do you love Portland (1-5)?'
-                },
-                {
-                  'type': 'string',
-                  'body': 'What do you love most about Portland?'
-                }
-            ],
-            'comments': [
-                {
-                  'id': '1',
-                  'timestamp': '2012-12-31 15:54:42.915204',
-                  'author': 'Roger',
-                  'body': 'I didn\'t really like Portland.'
-                },
-                {
-                  'id': '2',
-                  'timestamp': '2012-12-30 15:54:42.915204',
-                  'author': 'Christine',
-                  'body': 'The food!'
-                }
-            ]
-        },
-        {
-            'id': '2',
-            'timestamp': '2012-12-30 15:54:42.915204',
-            'author': 'Susan',
-            'body': 'I loved the Avengers movie!!',
-            'questions': [
-                {
-                  'type': 'integer',
-                  'body': 'How much did you love the Avengers movie? (1-5)'
-                },
-                {
-                  'type': 'string',
-                  'body': 'What was your favorite part?'
-                }
-            ],
-            'comments': [
-                {
-                  'id': '1',
-                  'timestamp': '2012-12-31 15:54:42.915204',
-                  'author': 'Phyllis',
-                  'body': 'I didn\'t really like the Avengers movie.'
-                },
-                {
-                  'id': '2',
-                  'timestamp': '2012-12-30 15:54:42.915204',
-                  'author': 'Velociraptor',
-                  'body': 'The enemies looked like dinosaurs.'
-                }
-            ]
-        },
-    ]
+    posts = Post.query.order_by(Post.timestamp.desc()).all()
     return render_template('index.html',
                            title='Home',
                            posts=posts)
 
 @app.route('/post/')
-@app.route('/post/<id>')
-def post(id=0):
-    if id == 0:
+@app.route('/post/<post_id>')
+def post(post_id=0):
+    if post_id == 0:
         post = Post.query.order_by(Post.timestamp.desc())
     else:
-        post = Post.query.filter_by(id=id)
+        post = Post.query.filter_by(id=post_id)
     #post = Post.query.order_by(Post.timestamp.desc()).first()
     return render_template('post.html',
                            title=post[0].title,
@@ -91,51 +30,22 @@ def admin():
                            title='Admin')
 
 @app.route('/results/<post_id>')
-def results(post_id):
-    post = {
-            'id': '2',
-            'timestamp': '2012-12-30 15:54:42.915204',
-            'author': 'Susan',
-            'body': 'I loved the Avengers movie!!',
-            'questions': [
-                {
-                  'type': 'integer',
-                  'body': 'How much did you love the Avengers movie? (1-5)'
-                },
-                {
-                  'type': 'string',
-                  'body': 'What was your favorite part?'
-                }
-            ],
-            'comments': [
-                {
-                  'id': '1',
-                  'timestamp': '2012-12-31 15:54:42.915204',
-                  'author': 'Phyllis',
-                  'body': 'I didn\'t really like the Avengers movie.'
-                },
-                {
-                  'id': '2',
-                  'timestamp': '2012-12-30 15:54:42.915204',
-                  'author': 'Velociraptor',
-                  'body': 'The enemies looked like dinosaurs.'
-                }
-            ]
-    }
-    answers = [
-      {
-        'id': '1',
-        'question_id': '1',
-        'timestamp': '2012-12-30 15:54:42.915204',
-        'author': 'Susan',
-        'type': 'string',
-        'body': 'I answer that I loved the Avengers movie!!'
-      }
-    ]
+def results(post_id=0):
+    if post_id == 0:
+        post = Post.query.order_by(Post.timestamp.desc())
+    else:
+        post = Post.query.filter_by(id=post_id)
+    questions = Question.query.filter_by(post_id=post[0].id)
+    relevant_answers = []
+    for question in questions:
+        answers = Answer.query.filter_by(question_id=question.id)
+        for answer in answers:
+            relevant_answers.append(answer)
     return render_template('results.html',
-                           post=post,
-                           answers=answers,
-                           title=post['title']+' Results')
+                           post=post[0],
+                           questions=questions,
+                           answers=relevant_answers,
+                           title=post[0].title+' Results')
 
 @app.route('/new-post')
 def new_post():

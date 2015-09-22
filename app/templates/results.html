@@ -1,4 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-{% for post in posts %}
-
+<h1>{{ post.title }}</h1>
+  <table>
+  {% for question in questions %}
+    <tr><td>{{ question.id }} - {{ question.body }}</td>
+    {% for answer in answers %}
+      {% if answer.question_id == question.id %}
+      <td>{{ answer.body }}</td>
+      {% endif %}
+    {% endfor %}
+    </tr>
+  {% endfor %}
+  </table>
+{% endblock %}
