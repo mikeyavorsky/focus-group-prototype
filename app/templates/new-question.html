@@ -4,15 +4,11 @@
     {{ form.hidden_tag() }}
     <table>
         <tr>
-          <td>Title:</td>
-          <td>{{ form.title(size=50, maxLength=140) }}</td>
+          <td>Question Type:</td>
+          <td>{{ form.qtype(size=2, maxLength=20) }}</td>
         </tr>
         <tr>
-          <td>Author:</td>
-          <td>{{ form.author(size=30, maxLength=64) }}</td>
-        </tr>
-        <tr>
-          <td>Body:</td>
+          <td>Question Content:</td>
           <td>{{ form.body(size=500, maxLength=500) }}</td>
         </tr>
             <td>
@@ -23,7 +19,7 @@
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="Add Question"></td>
+            <td><input type="submit" value="Submit Question"></td>
             <td></td>
         </tr>
     </table>

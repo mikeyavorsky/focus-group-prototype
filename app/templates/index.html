@@ -8,5 +8,9 @@
     <p>
         {{ post.body }}
     </p>
+    <footer>
+      <li>{{ post.comments.count() }}{% if post.comments.count() == 1 %} Comment{% else %} Comments{% endif %}</li>
+      <li><a href="{{ url_for('post', post_id=post.id) }}">Add Comment</a></li>
+    </footer>
     {% endfor %}
 {% endblock %}

@@ -5,4 +5,38 @@
   <p>
       {{ post.body }}
   </p>
+  {% for comment in post.comments %}
+  <p>
+    <h4>{{ comment.author }}</h4>
+    <p>
+      {{ comment.body }}
+    </p>
+  </p>
+  {% endfor %}
+  <p>
+    <form action="" method="post" name="comment">
+        {{ form.hidden_tag() }}
+        <table>
+            <tr>
+              <td>Name:</td>
+              <td>{{ form.author(size=30, maxLength=64) }}</td>
+            </tr>
+            <tr>
+              <td>Comment:</td>
+              <td>{{ form.body(size=500, maxLength=500) }}</td>
+            </tr>
+                <td>
+                {% for error in form.errors %}
+                <span style="color: red;">[{{ error }}]</span><br>
+                {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Post Comment"></td>
+                <td></td>
+            </tr>
+        </table>
+    </form>
+
 {% endblock %}
