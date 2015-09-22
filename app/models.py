@@ -5,7 +5,7 @@ class Post(db.Model):
     timestamp = db.Column(db.DateTime)
     author = db.Column(db.String(64))
     title = db.Column(db.String(140))
-    body = db.Column(db.String(140))
+    body = db.Column(db.String(500))
     questions = db.relationship('Question', backref='post', lazy='dynamic')
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
 
@@ -16,7 +16,7 @@ class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
     type = db.Column(db.String(1))
-    body = db.Column(db.String(500))
+    body = db.Column(db.String(250))
     answers = db.relationship('Answer', backref='question', lazy='dynamic')
 
     def __repr__(self):
