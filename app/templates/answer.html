@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>{{ post.title }}</h1>
+  <h3>{{ post.author }}</h3>
+  <p>
+      {{ post.body }}
+  </p>
+  <p>
+  <h3>Answer Questions:</h3>
+  <form action="" method="post" name="answer">
+      {{ form.hidden_tag() }}
+      <table>
+          <tr>
+            <td>Name:</td>
+            <td>{{ form.author(size=30, maxLength=64) }}</td>
+          </tr>
+          {% if num > 0 %}
+          <tr>
+            <td>{{ questions[0].body }}</td>
+            <td>{{ form.a0(size=250, maxLength=500) }}</td>
+          </tr>
+          {% endif %}
+          {% if num > 1 %}
+          <tr>
+            <td>{{ questions[1].body }}</td>
+            <td>{{ form.a1(size=250, maxLength=500) }}</td>
+          </tr>
+          {% endif %}
+          {% if num > 2 %}
+          <tr>
+            <td>{{ questions[2].body }}</td>
+            <td>{{ form.a2(size=250, maxLength=500) }}</td>
+          </tr>
+          {% endif %}
+          {% if num > 3 %}
+          <tr>
+            <td>{{ questions[3].body }}</td>
+            <td>{{ form.a3(size=250, maxLength=500) }}</td>
+          </tr>
+          {% endif %}
+          {% if num > 4 %}
+          <tr>
+            <td>{{ questions[4].body }}</td>
+            <td>{{ form.a4(size=250, maxLength=500) }}</td>
+          </tr>
+          {% endif %}
+          {% if num > 5 %}
+          <tr>
+            <td>{{ questions[5].body }}</td>
+            <td>{{ form.a5(size=250, maxLength=500) }}</td>
+          </tr>
+          {% endif %}
+          {% if num > 6 %}
+          <tr>
+            <td>{{ questions[6].body }}</td>
+            <td>{{ form.a6(size=250, maxLength=500) }}</td>
+          </tr>
+          {% endif %}
+          {% if num > 7 %}
+          <tr>
+            <td>{{ questions[7].body }}</td>
+            <td>{{ form.a7(size=250, maxLength=500) }}</td>
+          </tr>
+          {% endif %}
+          {% if num > 8 %}
+          <tr>
+            <td>{{ questions[8].body }}</td>
+            <td>{{ form.a8(size=250, maxLength=500) }}</td>
+          </tr>
+          {% endif %}
+          {% if num > 9 %}
+          <tr>
+            <td>{{ questions[9].body }}</td>
+            <td>{{ form.a9(size=250, maxLength=500) }}</td>
+          </tr>
+          {% endif %}
+          {% if num > 10 %}
+          <tr>
+            <td>{{ questions[10].body }}</td>
+            <td>{{ form.a10(size=250, maxLength=500) }}</td>
+          </tr>
+          {% endif %}
+          {% if num > 11 %}
+          <tr>
+            <td>{{ questions[11].body }}</td>
+            <td>{{ form.a11(size=250, maxLength=500) }}</td>
+          </tr>
+          {% endif %}
+          {% if num > 12 %}
+          <tr>
+            <td>{{ questions[12].body }}</td>
+            <td>{{ form.a12(size=250, maxLength=500) }}</td>
+          </tr>
+          {% endif %}
+          {% if num > 13 %}
+          <tr>
+            <td>{{ questions[13].body }}</td>
+            <td>{{ form.a13(size=250, maxLength=500) }}</td>
+          </tr>
+          {% endif %}
+          {% if num > 14 %}
+          <tr>
+            <td>{{ questions[14].body }}</td>
+            <td>{{ form.a14(size=250, maxLength=500) }}</td>
+          </tr>
+          {% endif %}
+          {% if num > 15 %}
+          <tr>
+            <td>{{ questions[15].body }}</td>
+            <td>{{ form.a15(size=250, maxLength=500) }}</td>
+          </tr>
+          {% endif %}
+          {% if num > 16 %}
+          <tr>
+            <td>{{ questions[16].body }}</td>
+            <td>{{ form.a16(size=250, maxLength=500) }}</td>
+          </tr>
+          {% endif %}
+          {% if num > 17 %}
+          <tr>
+            <td>{{ questions[17].body }}</td>
+            <td>{{ form.a17(size=250, maxLength=500) }}</td>
+          </tr>
+          {% endif %}
+          {% if num > 18 %}
+          <tr>
+            <td>{{ questions[18].body }}</td>
+            <td>{{ form.a18(size=250, maxLength=500) }}</td>
+          </tr>
+          {% endif %}
+          {% if num > 19 %}
+          <tr>
+            <td>{{ questions[19].body }}</td>
+            <td>{{ form.a19(size=250, maxLength=500) }}</td>
+          </tr>
+          {% endif %}
+          <tr>
+            <td>
+              <td>
+              {% for error in form.errors %}
+              <span style="color: red;">[{{ error }}]</span><br>
+              {% endfor %}
+              </td>
+          </tr>
+          <tr>
+              <td></td>
+              <td><input type="submit" value="submit"></td>
+              <td></td>
+          </tr>
+      </table>
+  </form>
+
+{% endblock %}

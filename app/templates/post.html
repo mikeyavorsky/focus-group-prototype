@@ -5,6 +5,9 @@
   <p>
       {{ post.body }}
   </p>
+  {% if not post.questions == None %}
+  <a href="{{ url_for('answer', post_id=post_id) }}">Answer Questions</a>
+  {% endif %}
   {% for comment in post.comments %}
   <p>
     <h4>{{ comment.author }}</h4>
