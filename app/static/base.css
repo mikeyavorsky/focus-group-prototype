@@ -1,0 +1,33 @@
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  font: 'Source Sans Pro', 'Helvetica';
+  min-width: 100%;
+}
+
+nav {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  background: navy;
+  color: white;
+  min-height: 5%;
+  min-width: 100%;
+}
+
+.logo {
+  align-self: flex-start;
+  margin: 0 0 0 1%;
+}
+
+nav a {
+  color: white;
+  align-self: flex-end;
+  margin: auto 0 0 auto;
+}

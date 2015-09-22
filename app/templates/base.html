@@ -5,11 +5,16 @@
     {% else %}
     <title>Upcountry</title>
     {% endif %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    <script src="https://use.typekit.net/njo1tvk.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
   </head>
   <body>
-    <div>Upcountry: <a href="/index">Home</a></div>
-    <hr>
+    <nav>
+      <div class="logo"><h1>Upcountry</h1></div>
+      <a href="{{ url_for('index') }}">Home</a>
+    </nav>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     <ul>
