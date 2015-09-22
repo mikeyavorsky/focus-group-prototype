@@ -1,30 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Hi, {{ g.user.nickname }}!</h1>
 <form action="" method="post" name="post">
     {{ form.hidden_tag() }}
     <table>
         <tr>
           <td>Title:</td>
-          <td>{{ form.post(size=50, maxLength=140) }}</td>
+          <td>{{ form.title(size=50, maxLength=140) }}</td>
         </tr>
         <tr>
           <td>Author:</td>
-          <td>{{ form.post(size=30, maxLength=64) }}</td>
+          <td>{{ form.author(size=30, maxLength=64) }}</td>
+        </tr>
+        <tr>
+          <td># of Questions:</td>
+          <td>{{ form.num_questions(size=2, maxLength=2) }}</td>
         </tr>
         <tr>
           <td>Body:</td>
-          <td>{{ form.post(size=250, maxLength=500) }}</td>
+          <td>{{ form.body(size=500, maxLength=500) }}</td>
         </tr>
             <td>
-            {% for error in form.post.errors %}
+            {% for error in form.errors %}
             <span style="color: red;">[{{ error }}]</span><br>
             {% endfor %}
             </td>
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="Post!"></td>
+            <td><input type="submit" value="Submit Post"></td>
             <td></td>
         </tr>
     </table>

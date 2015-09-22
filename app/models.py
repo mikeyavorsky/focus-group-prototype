@@ -1,8 +1,9 @@
 from app import db
+from datetime import datetime
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    timestamp = db.Column(db.DateTime)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
     author = db.Column(db.String(64))
     title = db.Column(db.String(140))
     body = db.Column(db.String(500))
@@ -34,7 +35,7 @@ class Answer(db.Model):
 
 class Response(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    timestamp = db.Column(db.DateTime)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
     author = db.Column(db.String(64))
     answers = db.relationship('Answer', backref='set', lazy='dynamic')
 
@@ -44,7 +45,7 @@ class Response(db.Model):
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
-    timestamp = db.Column(db.DateTime)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
     author = db.Column(db.String(64))
     body = db.Column(db.String(500))
 
