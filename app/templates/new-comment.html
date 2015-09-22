@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="" method="post" name="comment">
+    {{ form.hidden_tag() }}
+    <table>
+        <tr>
+          <td>Author:</td>
+          <td>{{ form.author(size=30, maxLength=64) }}</td>
+        </tr>
+        <tr>
+          <td>Body:</td>
+          <td>{{ form.body(size=500, maxLength=500) }}</td>
+        </tr>
+            <td>
+            {% for error in form.errors %}
+            <span style="color: red;">[{{ error }}]</span><br>
+            {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Submit Comment"></td>
+            <td></td>
+        </tr>
+    </table>
+</form>
+{% endblock %}
