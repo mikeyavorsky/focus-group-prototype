@@ -17,7 +17,7 @@ class Question(db.Model):
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
     type = db.Column(db.String(1))
     body = db.Column(db.String(500))
-    answers = db.relationship('Answer', backref='question', lazy='dynamic')    
+    answers = db.relationship('Answer', backref='question', lazy='dynamic')
 
     def __repr__(self):
         return '<Question %r>' % (self.body)
@@ -28,7 +28,7 @@ class Answer(db.Model):
     response_id = db.Column(db.Integer, db.ForeignKey('response.id'))
     type = db.Column(db.String(1))
     body = db.Column(db.String(500))
-    
+
     def __repr__(self):
         return '<Answer %r>' % (self.body)
 
