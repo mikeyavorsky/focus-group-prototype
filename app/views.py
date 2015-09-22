@@ -1,5 +1,6 @@
 from flask import render_template, flash, redirect
 from app import app
+from .models import Post, Comment, Question, Answer, Response
 
 
 @app.route('/')
@@ -104,8 +105,9 @@ def post():
                 }
             ]
     }
+    post = Post.query.order_by(Post.timestamp.desc()).first()
     return render_template('post.html',
-                           title=post['title'],
+                           title=post.title,
                            post=post)
 
 
