@@ -5,17 +5,18 @@ class Post(db.Model):
     timestamp = db.Column(db.DateTime)
     author = db.Column(db.String(64))
     body = db.Column(db.String(140))
-    questions = db.Relationship('Question', backref='post', lazy='dynamic')
-    comments = db.Relationship('Comment', backref='post', lazy='dynamic')
+    questions = db.relationship('Question', backref='post', lazy='dynamic')
+    comments = db.relationship('Comment', backref='post', lazy='dynamic')
 
     def __repr__(self):
         return '<Post %r>' % (self.body)
 
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
     type = db.Column(db.String(1))
     body = db.Column(db.String(500))
-    answers = db.Relationship('Answer', backref='question', lazy='dynamic')    
+    answers = db.relationship('Answer', backref='question', lazy='dynamic')    
 
     def __repr__(self):
         return '<Question %r>' % (self.body)
@@ -33,14 +34,15 @@ class Answer(db.Model):
 class Response(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     timestamp = db.Column(db.DateTime)
-    author = db.Column(db.String(64)
-    answers = db.Relationship('Answer', backref='set', lazy='dynamic')
+    author = db.Column(db.String(64))
+    answers = db.relationship('Answer', backref='set', lazy='dynamic')
 
     def __repr__(self):
         return '<Response %r>' % (self.id)
 
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
     timestamp = db.Column(db.DateTime)
     author = db.Column(db.String(64))
     body = db.Column(db.String(500))

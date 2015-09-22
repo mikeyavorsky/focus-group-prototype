@@ -26,7 +26,7 @@ def index():
                   'id': '1',
                   'timestamp': '2012-12-31 15:54:42.915204',
                   'author': 'Roger',
-                  'body': 'I didn't really like Portland.'
+                  'body': 'I didn\'t really like Portland.'
                 },
                 {
                   'id': '2',
@@ -56,7 +56,7 @@ def index():
                   'id': '1',
                   'timestamp': '2012-12-31 15:54:42.915204',
                   'author': 'Phyllis',
-                  'body': 'I didn't really like the Avengers movie.'
+                  'body': 'I didn\'t really like the Avengers movie.'
                 },
                 {
                   'id': '2',
@@ -94,7 +94,7 @@ def post():
                   'id': '1',
                   'timestamp': '2012-12-31 15:54:42.915204',
                   'author': 'Phyllis',
-                  'body': 'I didn't really like the Avengers movie.'
+                  'body': 'I didn\'t really like the Avengers movie.'
                 },
                 {
                   'id': '2',
@@ -116,6 +116,46 @@ def admin():
 
 @app.route('/results/<post_id>')
 def results(post_id):
+    post = {
+            'id': '2',
+            'timestamp': '2012-12-30 15:54:42.915204',
+            'author': 'Susan',
+            'body': 'I loved the Avengers movie!!',
+            'questions': [
+                {
+                  'type': 'integer',
+                  'body': 'How much did you love the Avengers movie? (1-5)'
+                },
+                {
+                  'type': 'string',
+                  'body': 'What was your favorite part?'
+                }
+            ],
+            'comments': [
+                {
+                  'id': '1',
+                  'timestamp': '2012-12-31 15:54:42.915204',
+                  'author': 'Phyllis',
+                  'body': 'I didn\'t really like the Avengers movie.'
+                },
+                {
+                  'id': '2',
+                  'timestamp': '2012-12-30 15:54:42.915204',
+                  'author': 'Velociraptor',
+                  'body': 'The enemies looked like dinosaurs.'
+                }
+            ]
+    }
+    answers = [
+      {
+        'id': '1',
+        'question_id': '1',
+        'timestamp': '2012-12-30 15:54:42.915204',
+        'author': 'Susan',
+        'type': 'string',
+        'body': 'I answer that I loved the Avengers movie!!'
+      }
+    ]
     return render_template('results.html',
                            post=post,
                            answers=answers,
