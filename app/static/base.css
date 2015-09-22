@@ -7,7 +7,9 @@ html {
 }
 
 body {
-  font: 'Source Sans Pro', 'Helvetica';
+  color: black;
+  background: rgba(137,248,238,0.2);
+  font: "source-sans-pro", "helvetica";
   min-width: 100%;
 }
 
@@ -15,19 +17,88 @@ nav {
   display: -webkit-flex;
   display: flex;
   flex-direction: row;
-  background: navy;
+  background: #3A8BFF;
   color: white;
   min-height: 5%;
   min-width: 100%;
 }
 
+a {
+  color: #1A9439;
+}
+
 .logo {
+  color: rgba(107,224,137,1);
   align-self: flex-start;
   margin: 0 0 0 1%;
 }
 
 nav a {
-  color: white;
+  text-decoration: none;
+  color: rgba(107,224,137,1);
   align-self: flex-end;
-  margin: auto 0 0 auto;
+  margin: auto 1% auto auto;
+}
+
+.new-post {
+  margin: auto;
+  align-self: center;
+  display: -webkit-flex;
+  display: flex;
+  height: 5%;
+  width: 100%;
+  background: #1A9439;
+}
+
+.new-post a {
+  margin: auto;
+  align-self: center;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: capitalize;
+  color: white;
+}
+
+.post {
+  margin: 5%;
+}
+
+li {
+  list-style: none;
+}
+
+.post footer {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+}
+
+.post footer li {
+  align-self: auto;
+  margin: 1% 1% 0 1%;
+}
+
+input {
+  min-width: 300px;
+  border: 1px solid gray;
+  margin-left: 5%;
+}
+
+textarea {
+  width: 300px;
+  border: 1px solid gray;
+  margin-left: 5%;
+}
+
+form {
+    display: block;
+    padding: 5px;
+    border-radius: 5px;
+    color: #333;
+}
+
+input[type="submit"] {
+  border: none;
+  margin-top: 2%;
+  background: lightblue;
 }

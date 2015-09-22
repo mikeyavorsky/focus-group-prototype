@@ -38,8 +38,10 @@ def post(post_id=0):
 
 @app.route('/admin')
 def admin():
+    posts = Post.query.all()
     return render_template('admin.html',
-                           title='Admin')
+                           title='Admin',
+                           posts=posts)
 
 @app.route('/results/<post_id>')
 def results(post_id=0):
@@ -59,7 +61,7 @@ def results(post_id=0):
                            answers=relevant_answers,
                            title=post[0].title+' Results')
 
-@app.route('/new-post/', methods=['GET','POST'])
+@app.route('/new-post/', methods=['GET', 'POST'])
 @app.route('/new-post', methods=['GET','POST'])
 def new_post():
     form = PostForm()

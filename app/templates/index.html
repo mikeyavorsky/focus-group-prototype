@@ -3,11 +3,17 @@
 
 {% block content %}
     {% for post in posts %}
+    <div class="post">
+    <div class="flex-container">
+    <header>
     <h1>{{ post.title }}</h1>
     <h3>{{ post.author }}</h3>
-    <p>
+    <h4>{{ post.timestamp.date() }}</h4>
+    </header>
+    <section>
         {{ post.body }}
-    </p>
+    </section>
+    </div>
     <footer>
       {% if not post.questions == None %}
       <li><a href="{{ url_for('answer', post_id=post.id) }}">Answer Questions</a></li>
@@ -15,5 +21,6 @@
       <li>{{ post.comments.count() }}{% if post.comments.count() == 1 %} Comment{% else %} Comments{% endif %}</li>
       <li><a href="{{ url_for('post', post_id=post.id) }}">Add Comment</a></li>
     </footer>
+  </div>
     {% endfor %}
 {% endblock %}

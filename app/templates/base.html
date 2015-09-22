@@ -12,7 +12,7 @@
   </head>
   <body>
     <nav>
-      <div class="logo"><h1>Upcountry</h1></div>
+      <div class="logo"><h1><a class="logo" href="{{ url_for('index') }}">Upcountry</a></h1></div>
       <a href="{{ url_for('index') }}">Home</a>
     </nav>
     {% with messages = get_flashed_messages() %}

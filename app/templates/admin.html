@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-<a href="{{ url_for('new_post') }}">New Post</a>
-<hr>
-<h1>Results</h1>
+<div class="new-post"><a href="{{ url_for('new_post') }}">New Post</a></div>
+<div class="post">
+  <h1>Results</h1>
+</div>
 {% for post in posts %}
-<hr>
+<div class="post">
 <h2>{{ post.title }}</h2>
+<a href="{{ url_for('results', post_id=post.id) }}">View Results</a>
+</div>
 {% endfor %}
 {% endblock %}
