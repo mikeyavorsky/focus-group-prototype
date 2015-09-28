@@ -6,16 +6,16 @@
     <div class="post">
     <div class="flex-container">
     <header>
-    <h1>{{ post.title }}</h1>
+    <h1><a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h1>
     <h3>{{ post.author }}</h3>
     <h4>{{ post.timestamp.date() }}</h4>
     </header>
     <section>
-        {{ post.body }}
+        {{ post.body|safe }}
     </section>
     </div>
     <footer>
-      {% if not post.questions == None %}
+      {% if post.questions.count() > 0 %}
       <li><a href="{{ url_for('answer', post_id=post.id) }}">Answer Questions</a></li>
       {% endif %}
       <li>{{ post.comments.count() }}{% if post.comments.count() == 1 %} Comment{% else %} Comments{% endif %}</li>

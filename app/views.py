@@ -16,7 +16,7 @@ def index():
 
 @app.route('/post/', methods=['GET','POST'])
 @app.route('/post/<post_id>', methods=['GET','POST'])
-def post(post_id=0):
+def post(post_id):
     form = CommentForm()
     if form.validate_on_submit():
         comment = Comment(post_id=Post.query.order_by(Post.timestamp.desc())[0].id,
@@ -26,7 +26,7 @@ def post(post_id=0):
         db.session.commit()
         flash('Your comment has been posted!')
         return redirect(url_for('post', post_id=post_id))
-    if post_id == 0:
+    if post_id == None:
         post = Post.query.order_by(Post.timestamp.desc())
     else:
         post = Post.query.filter_by(id=post_id)
@@ -34,6 +34,21 @@ def post(post_id=0):
                            title=post[0].title,
                            post=post[0],
                            form=form)
+
+@app.route('/delete')
+def delete():
+	posts = Post.query.all()
+	form = DeleteForm()
+	if form.validate_on_submit():
+		post_to_delete = Post.query.order_by(post_id=post_id_to_delete).first()
+		db.session.delete(post_to_delete)
+		db.session.commit()
+		flash('That post has been deleted')
+		return redirect(url_for('admin'))
+
+	return render_template('delete.html',
+				title='Delete',
+				posts=posts)
 
 
 @app.route('/admin')
@@ -85,7 +100,7 @@ def new_question():
         post_id = posts[0].id
         question = Question(post_id=post_id,
                             type=form.qtype.data,
-                            body=form.content.data)
+                            body=form.body.data)
         db.session.add(question)
         db.session.commit()
         flash('You\'ve added a question!')
@@ -95,9 +110,8 @@ def new_question():
                            form=form)
 
 
-@app.route('/answer/', methods=['GET','POST'])
 @app.route('/answer/<post_id>', methods=['GET','POST'])
-def answer(post_id=2):
+def answer(post_id):
     form = AnswerForm()
     if form.validate_on_submit():
         post = Post.query.filter_by(id=post_id)

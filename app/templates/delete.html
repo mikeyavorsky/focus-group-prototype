@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% for post in posts %}
+  <h1>{{ post.title }}</h1>
+  <h3>{{ post.id }}</h3>
+  <hr>
+  {% endfor %}
+  <div>
+    <form action="" method="post" name="delete">
+        {{ form.hidden_tag() }}
+        <table>
+            <tr>
+              <td>Post ID for Deletion:</td>
+              <td>{{ form.delete(size=10, maxLength=200) }}</td>
+            </tr>
+                <td>
+                {% for error in form.errors %}
+                <span style="color: red;">[{{ error }}]</span><br>
+                {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Delete Post"></td>
+                <td></td>
+            </tr>
+        </table>
+    </form>
+  </div>
+{% endblock %}
+

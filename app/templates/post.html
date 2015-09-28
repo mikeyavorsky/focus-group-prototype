@@ -4,16 +4,16 @@
   <h1>{{ post.title }}</h1>
   <h3>{{ post.author }}</h3>
   <p>
-      {{ post.body }}
+      {{ post.body | safe }}
   </p>
   {% if not post.questions == None %}
-  <a href="{{ url_for('answer', post_id=post_id) }}">Answer Questions</a>
+  <a href="{{ url_for('answer', post_id=post.id) }}">Answer Questions</a>
   {% endif %}
   {% for comment in post.comments %}
   <p>
     <h4>{{ comment.author }}</h4>
     <p>
-      {{ comment.body }}
+      {{ comment.body | safe }}
     </p>
   </p>
   {% endfor %}

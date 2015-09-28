@@ -4,7 +4,7 @@
   <h1>{{ post.title }}</h1>
   <h3>{{ post.author }}</h3>
   <p>
-      {{ post.body }}
+      {{ post.body | safe }}
   </p>
   <p>
   <h3>Answer Questions:</h3>
@@ -15,15 +15,13 @@
             <td>Name:</td>
             <td>{{ form.author(size=30, maxLength=64) }}</td>
           </tr>
-          {% if num > 0 %}
           <tr>
-            <td>{{ questions[0].body }}</td>
+            <td>{{ questions[0].body | safe }}</td>
             <td>{{ form.a0(size=250, maxLength=500) }}</td>
           </tr>
-          {% endif %}
           {% if num > 1 %}
           <tr>
-            <td>{{ questions[1].body }}</td>
+            <td>{{ questions[1].body | safe }}</td>
             <td>{{ form.a1(size=250, maxLength=500) }}</td>
           </tr>
           {% endif %}

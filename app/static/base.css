@@ -40,19 +40,19 @@ nav a {
   margin: auto 1% auto auto;
 }
 
-.new-post {
-  margin: auto;
-  align-self: center;
+.header-link-container {
   display: -webkit-flex;
   display: flex;
+  flex-direction: row;
   height: 5%;
   width: 100%;
   background: #1A9439;
 }
 
-.new-post a {
+.header-link {
+  height: 5%;
   margin: auto;
-  align-self: center;
+  vertical-align: center;
   font-weight: bold;
   text-decoration: none;
   text-transform: capitalize;
@@ -63,7 +63,7 @@ nav a {
   margin: 5%;
 }
 
-li {
+nav li {
   list-style: none;
 }
 

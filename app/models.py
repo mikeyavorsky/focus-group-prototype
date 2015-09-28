@@ -6,7 +6,7 @@ class Post(db.Model):
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
     author = db.Column(db.String(64))
     title = db.Column(db.String(140))
-    body = db.Column(db.String(500))
+    body = db.Column(db.String(7500))
     questions = db.relationship('Question', backref='post', lazy='dynamic')
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
 
