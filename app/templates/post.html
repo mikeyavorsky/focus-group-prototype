@@ -7,8 +7,9 @@
       {{ post.body | safe }}
   </p>
   {% if not post.questions == None %}
-  <a href="{{ url_for('answer', post_id=post.id) }}">Answer Questions</a>
+  <a href="{{ url_for('answer', post_id=post.id) }}#questions">Answer Questions</a>
   {% endif %}
+  <div id="comments">
   {% for comment in post.comments %}
   <p>
     <h4>{{ comment.author }}</h4>
@@ -17,6 +18,7 @@
     </p>
   </p>
   {% endfor %}
+  </div>
   <p>
     <form action="" method="post" name="comment">
         {{ form.hidden_tag() }}
