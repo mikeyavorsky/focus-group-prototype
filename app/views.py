@@ -35,7 +35,8 @@ def post(post_id):
                            post=post[0],
                            form=form)
 
-@app.route('/delete')
+@app.route('/delete', methods=['GET','POST'])
+@app.route('/delete/<post_id_to_delete>', methods=['GET','POST'])
 def delete():
 	posts = Post.query.all()
 	form = DeleteForm()
@@ -45,7 +46,6 @@ def delete():
 		db.session.commit()
 		flash('That post has been deleted')
 		return redirect(url_for('admin'))
-
 	return render_template('delete.html',
 				title='Delete',
 				posts=posts)
