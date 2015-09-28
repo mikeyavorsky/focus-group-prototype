@@ -16,10 +16,12 @@
     </div>
     <footer>
       {% if post.questions.count() > 0 %}
-      <li><a href="{{ url_for('answer', post_id=post.id) }}">Answer Questions</a></li>
+      <li><a href="{{ url_for('answer', post_id=post.id) }}#questions">Answer Questions</a></li>
       {% endif %}
-      <li>{{ post.comments.count() }}{% if post.comments.count() == 1 %} Comment{% else %} Comments{% endif %}</li>
-      <li><a href="{{ url_for('post', post_id=post.id) }}">Add Comment</a></li>
+      <li>{% if post.comments.count() > 0 %}<a href="{{ url_for('post', post_id=post.id) }}#comments">{% endif %}
+          {{ post.comments.count() }}{% if post.comments.count() == 1 %} Comment{% else %} Comments{% endif %}
+          {% if post.comments.count() > 0 %}</a>{% endif %}</li>
+      <li><a href="{{ url_for('post', post_id=post.id) }}#comments">Add Comment</a></li>
     </footer>
   </div>
     {% endfor %}
