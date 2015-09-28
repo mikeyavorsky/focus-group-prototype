@@ -41,6 +41,3 @@ class AnswerForm(Form):
     a17 = TextAreaField('a17')
     a18 = TextAreaField('a18')
     a19 = TextAreaField('a19')
-
-class DeleteForm(Form):
-    post_id_to_delete = StringField('post_id_to_delete', validators=[DataRequired()])
