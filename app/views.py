@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for
 from app import app, db
 from .models import Post, Comment, Question, Answer, Response
-from .forms import PostForm, CommentForm, QuestionForm, AnswerForm, DeleteForm
+from .forms import PostForm, CommentForm, QuestionForm, AnswerForm
 from datetime import datetime
 
 
@@ -35,21 +35,13 @@ def post(post_id):
                            post=post[0],
                            form=form)
 
-@app.route('/delete', methods=['GET','POST'])
-@app.route('/delete/<post_id_to_delete>', methods=['GET','POST'])
-def delete():
-	posts = Post.query.all()
-	form = DeleteForm()
-	if form.validate_on_submit():
-		post_to_delete = Post.query.order_by(post_id=post_id_to_delete).first()
-		db.session.delete(post_to_delete)
-		db.session.commit()
-		flash('That post has been deleted')
-		return redirect(url_for('admin'))
-	return render_template('delete.html',
-				title='Delete',
-				posts=posts)
-
+@app.route('/delete/<post_id>', methods=['GET', 'POST'])
+def delete(post_id):
+    post = Post.query.filter_by(id=post_id)
+    db.session.delete(post)
+    db.session.commit()
+    flash('That post has been deleted')
+    return redirect(url_for('admin'))
 
 @app.route('/admin')
 def admin():
