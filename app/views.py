@@ -35,10 +35,10 @@ def post(post_id):
                            post=post[0],
                            form=form)
 
-@app.route('/delete/<post_id>', methods=['GET', 'POST'])
+@app.route('/delete/<post_id>')
 def delete(post_id):
     post = Post.query.filter_by(id=post_id)
-    db.session.delete(post)
+    db.session.delete(post[0])
     db.session.commit()
     flash('That post has been deleted')
     return redirect(url_for('admin'))
