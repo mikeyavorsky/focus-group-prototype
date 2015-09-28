@@ -84,6 +84,23 @@ def new_post():
                            title='New Post',
                            form=form)
 
+@app.route('/edit-post/<post_id>', methods=['GET', 'POST'])
+def edit(post_id):
+    post = Post.query.filter_by(id=post_id)
+    form = PostForm()
+    if form.validate_on_submit():
+        post[0].title = form.title.data
+        post[0].author = form.author.data
+        post[0].body = form.body.data
+        db.session.add(post[0])
+        db.session.commit()
+        flash('The post has been updated')
+        return redirect(url_for('admin'))
+    return render_template('edit-post.html',
+                            title='Edit Post',
+                            form=form,
+                            post=post[0])
+
 @app.route('/new-question', methods=['GET','POST'])
 def new_question():
     form = QuestionForm()

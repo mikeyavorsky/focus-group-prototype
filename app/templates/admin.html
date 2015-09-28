@@ -10,7 +10,10 @@
 {% for post in posts %}
 <div class="post">
 <h2>{{ post.title }}</h2>
-<a href="{{ url_for('results', post_id=post.id) }}">View Results</a>
+<ul>
+<li><a href="{{ url_for('results', post_id=post.id) }}">View Results</a></li>
+<li><a href="{{ url_for('edit', post_id=post.id) }}">Edit Post</a></li>
+<li><a href="{{ url_for('delete', post_id=post.id) }}">Delete Post</a></li>
 </div>
 {% endfor %}
 {% endblock %}
