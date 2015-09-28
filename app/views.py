@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for
 from app import app, db
 from .models import Post, Comment, Question, Answer, Response
-from .forms import PostForm, CommentForm, QuestionForm, AnswerForm
+from .forms import PostForm, CommentForm, QuestionForm, AnswerForm, DeleteForm
 from datetime import datetime
 
 
